@@ -8,6 +8,9 @@
 
 namespace mpt
 {
+    template <typename T>
+    struct universal_type;
+
     template <typename Tag, typename T>
     class unique_type
     {
@@ -170,6 +173,146 @@ namespace mpt
 
         template<typename U>
         bool operator >=(const Unique<U>& o) const { return value >= o.value; }
+
+        template <typename U>
+        auto operator +(const universal_type<U>& o) const {
+            return Unique<decltype(value + o.val)>(value + o.val);
+        }
+
+        template <typename U>
+        auto& operator +=(const universal_type<U>& o) {
+            value += o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator -(const universal_type<U>& o) const {
+            return Unique<decltype(value - o.val)>(value - o.val);
+        }
+
+        template <typename U>
+        auto& operator -=(const universal_type<U>& o) {
+            value -= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator *(const universal_type<U>& o) const {
+            return Unique<decltype(value * o.val)>(value * o.val);
+        }
+
+        template <typename U>
+        auto& operator *=(const universal_type<U>& o) {
+            value *= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator /(const universal_type<U>& o) const {
+            return Unique<decltype(value / o.val)>(value / o.val);
+        }
+
+        template <typename U>
+        auto& operator /=(const universal_type<U>& o) {
+            value /= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator %(const universal_type<U>& o) const {
+            return Unique<decltype(value % o.val)>(value % o.val);
+        }
+
+        template <typename U>
+        auto& operator %=(const universal_type<U>& o) {
+            value %= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator ^(const universal_type<U>& o) const {
+            return Unique<decltype(value ^ o.val)>(value ^ o.val);
+        }
+
+        template <typename U>
+        auto& operator ^=(const universal_type<U>& o) {
+            value ^= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator &(const universal_type<U>& o) const {
+            return Unique<decltype(value & o.val)>(value & o.val);
+        }
+
+        template <typename U>
+        auto& operator &=(const universal_type<U>& o) {
+            value &= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator |(const universal_type<U>& o) const {
+            return Unique<decltype(value | o.val)>(value | o.val);
+        }
+
+        template <typename U>
+        auto& operator |=(const universal_type<U>& o) {
+            value |= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator <<(const universal_type<U>& o) const {
+            return Unique<decltype(value << o.val)>(value << o.val);
+        }
+
+        template <typename U>
+        auto& operator <<=(const universal_type<U>& o) {
+            value <<= o.val;
+            return *this;
+        }
+
+        template <typename U>
+        auto operator >>(const universal_type<U>& o) const {
+            return Unique<decltype(value >> o.val)>(value >> o.val);
+        }
+
+        template <typename U>
+        auto& operator >>=(const universal_type<U>& o) {
+            value >>= o.val;
+            return *this;
+        }
+
+        template<typename U>
+        bool operator ==(const universal_type<U>& o) const {
+            return value == o.val;
+        }
+
+        template<typename U>
+        bool operator !=(const universal_type<U>& o) const {
+            return value != o.val;
+        }
+
+        template<typename U>
+        bool operator <(const universal_type<U>& o) const {
+            return value < o.val;
+        }
+
+        template<typename U>
+        bool operator >(const universal_type<U>& o) const {
+            return value > o.val;
+        }
+
+        template<typename U>
+        bool operator <=(const universal_type<U>& o) const {
+            return value <= o.val;
+        }
+
+        template<typename U>
+        bool operator >=(const universal_type<U>& o) const {
+            return value >= o.val;
+        }
 
     private:
         T value;
