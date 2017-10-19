@@ -306,13 +306,13 @@ namespace mpt
 
     template <typename Tag, typename T>
     std::ostream& operator<<(std::ostream& os, const unique_type<Tag, T>& obj) {
-        os << T(obj);
+        os << static_cast<T>(obj);
         return os;
     }
 
     template <typename Tag, typename T>
     std::istream& operator>>(std::istream& is, unique_type<Tag, T>& obj) {
-        is >> T(obj);
+        is >> static_cast<T&>(obj);
         return is;
     }
 
