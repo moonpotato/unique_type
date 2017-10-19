@@ -332,12 +332,22 @@ namespace mpt
     }
 }
 
+#define MPT_UNIQUE_TYPE(name, type) \
+    struct name##_tag {}; \
+    using name = mpt::unique_type<name##_tag, type>
+
+#define MPT_UNIQUE_TYPE_MODIFIER(name) \
+    template <typename Tag> \
+    struct name##_tag {}; \
+    template <class Type> \
+    using name = mpt::unique_type<name##_tag<typename Type::TagType>, typename Type::ValueType>;
+
 #define MPT_UNIQUE_TYPE_FAMILY(name) \
     struct name##_tag {}; \
     template <typename T> \
     using name = mpt::unique_type<name##_tag, T>
 
-#define MPT_UNIQUE_TYPE_MODIFIER(name) \
+#define MPT_UNIQUE_TYPE_FAMILY_MODIFIER(name) \
     template <typename Tag> \
     struct name##_tag {}; \
     template <template <typename> class Type, typename T> \
