@@ -27,7 +27,6 @@ namespace mpt
         unique_type() = default;
 
         explicit unique_type(const T& val) : value{val} {}
-        explicit unique_type(T&& val) : value{val} {}
 
         explicit operator T() const { return value; }
         explicit operator T&() { return value; }
@@ -346,11 +345,6 @@ namespace mpt
 
     template <typename T>
     universal_type<T> W(const T& wrap) {
-        return universal_type<T>{wrap};
-    }
-
-    template <typename T>
-    universal_type<T> W(T&& wrap) {
         return universal_type<T>{wrap};
     }
 
