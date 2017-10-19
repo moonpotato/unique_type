@@ -6,16 +6,27 @@ namespace mpt
     template <typename Tag, typename T>
     class unique_type
     {
-        using Unique = unique_type<Tag, T>;
+    private:
+        template <typename UTag, typename U>
+        friend class unique_type;
+
+        template <typename U>
+        using Unique = unique_type<Tag, U>;
 
     public:
         unique_type() = default;
+
         explicit unique_type(const T& val) : value(val) {}
         explicit unique_type(T&& val) : value(val) {}
 
         explicit operator T() const { return value; }
         explicit operator T&() { return value; }
-    
+
+        template <typename U>
+        auto operator +(const Unique<U>& o) const {
+            return Unique<decltype(value + o.value)>(value + o.value);
+        }
+
     private:
         T value;
     };
