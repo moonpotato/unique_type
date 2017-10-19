@@ -24,6 +24,9 @@ namespace mpt
         using Unique = unique_type<Tag, U>;
 
     public:
+        using TagType = Tag;
+        using ValueType = T;
+
         unique_type() = default;
 
         explicit unique_type(const T& val) : value{val} {}
