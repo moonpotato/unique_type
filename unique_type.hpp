@@ -28,6 +28,22 @@ namespace mpt
         auto operator +(const Unique<U>& o) const {
             return Unique<decltype(value + o.value)>(value + o.value);
         }
+        template <typename U>
+        auto operator -(const Unique<U>& o) const {
+            return Unique<decltype(value - o.value)>(value - o.value);
+        }
+        template <typename U>
+        auto operator *(const Unique<U>& o) const {
+            return Unique<decltype(value * o.value)>(value * o.value);
+        }
+        template <typename U>
+        auto operator /(const Unique<U>& o) const {
+            return Unique<decltype(value / o.value)>(value / o.value);
+        }
+        template <typename U>
+        auto operator %(const Unique<U>& o) const {
+            return Unique<decltype(value % o.value)>(value % o.value);
+        }
 
     private:
         T value;
