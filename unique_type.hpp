@@ -186,6 +186,16 @@ namespace mpt
         is >> T(obj);
         return is;
     }
+
+    template <typename Tag, typename T>
+    T E(const unique_type<Tag, T>& extract_from) {
+        return static_cast<T>(extract_from);
+    }
+
+    template <typename Tag, typename T>
+    T& E(unique_type<Tag, T>& extract_from) {
+        return static_cast<T&>(extract_from);
+    }
 }
 
 #define MPT_UNIQUE_TYPE(name, type) \
