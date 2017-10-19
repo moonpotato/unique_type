@@ -65,14 +65,19 @@ namespace mpt
 
         template<typename U>
         bool operator ==(const Unique<U>& o) const { return value == o.value; }
+
         template<typename U>
         bool operator !=(const Unique<U>& o) const { return value != o.value; }
+
         template<typename U>
         bool operator <(const Unique<U>& o) const { return value < o.value; }
+
         template<typename U>
         bool operator >(const Unique<U>& o) const { return value > o.value; }
+
         template<typename U>
         bool operator <=(const Unique<U>& o) const { return value <= o.value; }
+
         template<typename U>
         bool operator >=(const Unique<U>& o) const { return value >= o.value; }
 
