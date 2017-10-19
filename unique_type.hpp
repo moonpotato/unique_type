@@ -8,9 +8,6 @@
 
 namespace mpt
 {
-    template <typename T>
-    struct universal_type { T val; };
-
     template <typename Tag, typename T>
     class unique_type
     {
@@ -26,17 +23,8 @@ namespace mpt
     public:
         unique_type() = default;
 
-        explicit unique_type(const T& val) : value(val) {}
-        explicit unique_type(T&& val) : value(val) {}
-
-        auto& operator =(const universal_type<T>& o) {
-            value = o.val;
-            return *this;
-        }
-        auto& operator =(universal_type<T>&& o) {
-            value = o.val;
-            return *this;
-        }
+        explicit unique_type(const T& val) : value{val} {}
+        explicit unique_type(T&& val) : value{val} {}
 
         explicit operator T() const { return value; }
         explicit operator T&() { return value; }
@@ -185,6 +173,20 @@ namespace mpt
 
     private:
         T value;
+    };
+
+    template <typename T>
+    struct universal_type
+    {
+        operator T() const { return val; }
+        operator T&() { return val; }
+
+        template <typename Tag>
+        operator unique_type<Tag, T>() {
+            return unique_type<Tag, T>{val};
+        }
+
+        T val;
     };
 
     template <typename Tag, typename T>
