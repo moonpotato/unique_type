@@ -1,6 +1,9 @@
 #ifndef MPT_UNIQUE_TYPE_HPP
 #define MPT_UNIQUE_TYPE_HPP
 
+#include <istream>
+#include <ostream>
+
 namespace mpt
 {
     template <typename Tag, typename T>
@@ -48,6 +51,18 @@ namespace mpt
     private:
         T value;
     };
+
+    template <typename Tag, typename T>
+    std::ostream& operator<<(std::ostream& os, const unique_type<Tag, T>& obj) {
+        os << T(obj);
+        return os;
+    }
+
+    template <typename Tag, typename T>
+    std::istream& operator>>(std::istream& is, unique_type<Tag, T>& obj) {
+        is >> T(obj);
+        return is;
+    }
 }
 
 #define MPT_UNIQUE_TYPE(name, type) \
