@@ -28,6 +28,9 @@ namespace mpt
 
         explicit unique_type(const T& val) : value{val} {}
 
+        template <typename U>
+        unique_type(const Unique<U>& o) : value{o.value} {}
+
         explicit operator T() const { return value; }
         explicit operator T&() { return value; }
 
