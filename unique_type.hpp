@@ -110,6 +110,17 @@ namespace mpt
         }
 
         template <typename U>
+        auto operator |(const Unique<U>& o) const {
+            return Unique<decltype(value | o.value)>(value | o.value);
+        }
+
+        template <typename U>
+        auto& operator |=(const Unique<U>& o) {
+            value |= o.value;
+            return *this;
+        }
+
+        template <typename U>
         auto operator ~() const {
             return Unique<decltype(~value)>(~value);
         }
