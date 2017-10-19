@@ -20,6 +20,9 @@ namespace mpt
         template <typename AnyTag, typename AnyType>
         friend class unique_type;
 
+        template <typename AnyType>
+        friend struct universal_type;
+
         template <typename U>
         using Unique = unique_type<Tag, U>;
 
@@ -299,6 +302,87 @@ namespace mpt
         template <typename Tag>
         operator unique_type<Tag, T>() {
             return unique_type<Tag, T>{val};
+        }
+
+        template <typename Tag>
+        auto operator +(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val + o.value)>(val + o.value);
+        }
+
+        template <typename Tag>
+        auto operator -(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val - o.value)>(val - o.value);
+        }
+
+        template <typename Tag>
+        auto operator *(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val * o.value)>(val * o.value);
+        }
+
+        template <typename Tag>
+        auto operator /(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val / o.value)>(val / o.value);
+        }
+
+        template <typename Tag>
+        auto operator %(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val % o.value)>(val % o.value);
+        }
+
+        template <typename Tag>
+        auto operator ^(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val ^ o.value)>(val ^ o.value);
+        }
+
+        template <typename Tag>
+        auto operator &(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val & o.value)>(val & o.value);
+        }
+
+        template <typename Tag>
+        auto operator |(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val | o.value)>(val | o.value);
+        }
+
+        template <typename Tag>
+        auto operator <<(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val << o.value)>(val << o.value);
+        }
+
+        template <typename Tag>
+        auto operator >>(const unique_type<Tag, T>& o) const {
+            return unique_type<Tag, decltype(val >> o.value)>(val >> o.value);
+        }
+
+        template <typename Tag>
+        bool operator ==(const unique_type<Tag, T>& o) const {
+            return val == o.value;
+        }
+
+        template <typename Tag>
+        bool operator !=(const unique_type<Tag, T>& o) const {
+            return val != o.value;
+        }
+
+        template <typename Tag>
+        bool operator <(const unique_type<Tag, T>& o) const {
+            return val < o.value;
+        }
+
+        template <typename Tag>
+        bool operator >(const unique_type<Tag, T>& o) const {
+            return val > o.value;
+        }
+
+        template <typename Tag>
+        bool operator <=(const unique_type<Tag, T>& o) const {
+            return val <= o.value;
+        }
+
+        template <typename Tag>
+        bool operator >=(const unique_type<Tag, T>& o) const {
+
+            return val >= o.value;
         }
 
         T val;
