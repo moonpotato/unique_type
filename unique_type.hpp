@@ -4,11 +4,15 @@
 #include <istream>
 #include <ostream>
 
+#include <type_traits>
+
 namespace mpt
 {
     template <typename Tag, typename T>
     class unique_type
     {
+        static_assert(std::is_arithmetic<T>::value, "unique_type not given arithmetic type");
+
     private:
         template <typename UTag, typename U>
         friend class unique_type;
