@@ -3,10 +3,10 @@
 
 namespace mpt
 {
-    template <typename T, typename Tag>
+    template <typename Tag, typename T>
     class unique_type
     {
-        using Unique = unique_type<T, Tag>;
+        using Unique = unique_type<Tag, T>;
 
     public:
         unique_type() = default;
@@ -23,11 +23,11 @@ namespace mpt
 
 #define MPT_UNIQUE_TYPE(name, type) \
     struct name##_tag {}; \
-    using name = mpt::unique_type<type, name##_tag>
+    using name = mpt::unique_type<name##_tag, type>
 
 #define MPT_UNIQUE_TYPE_FAMILY(name) \
     struct name##_tag {}; \
     template <typename T> \
-    using name = mpt::unique_type<T, name##_tag>
+    using name = mpt::unique_type<name##_tag, T>
 
 #endif // MPT_UNIQUE_TYPE_HPP
