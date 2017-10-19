@@ -48,6 +48,11 @@ namespace mpt
             return Unique<decltype(value % o.value)>(value % o.value);
         }
 
+        auto& operator ++() { return ++value, *this; }
+        auto operator ++(int) { return Unique<T>(value++); }
+        auto& operator --() { return --value, *this; }
+        auto operator --(int) { return Unique<T>(value--); }
+
     private:
         T value;
     };
