@@ -25,4 +25,9 @@ namespace mpt
     struct name##_tag {}; \
     using name = mpt::unique_type<type, name##_tag>
 
+#define MPT_UNIQUE_TYPE_FAMILY(name) \
+    struct name##_tag {}; \
+    template <typename T> \
+    using name = mpt::unique_type<T, name##_tag>
+
 #endif // MPT_UNIQUE_TYPE_HPP
