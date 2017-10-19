@@ -22,6 +22,8 @@ namespace mpt
         explicit operator T() const { return value; }
         explicit operator T&() { return value; }
 
+        operator bool() const { return bool(value); }
+
         template <typename U>
         auto operator +(const Unique<U>& o) const {
             return Unique<decltype(value + o.value)>(value + o.value);
