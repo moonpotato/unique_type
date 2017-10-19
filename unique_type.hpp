@@ -63,6 +63,19 @@ namespace mpt
         auto& operator --() { return --value, *this; }
         auto operator --(int) { return Unique<T>(value--); }
 
+        template<typename U>
+        bool operator ==(const Unique<U>& o) const { return value == o.value; }
+        template<typename U>
+        bool operator !=(const Unique<U>& o) const { return value != o.value; }
+        template<typename U>
+        bool operator <(const Unique<U>& o) const { return value < o.value; }
+        template<typename U>
+        bool operator >(const Unique<U>& o) const { return value > o.value; }
+        template<typename U>
+        bool operator <=(const Unique<U>& o) const { return value <= o.value; }
+        template<typename U>
+        bool operator >=(const Unique<U>& o) const { return value >= o.value; }
+
     private:
         T value;
     };
