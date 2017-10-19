@@ -37,117 +37,96 @@ namespace mpt
         explicit operator bool() const { return bool(value); }
         bool operator !() const { return !value; }
 
-        template <typename U>
-        auto operator +(const Unique<U>& o) const {
+        auto operator +(const Unique<T>& o) const {
             return Unique<decltype(value + o.value)>(value + o.value);
         }
 
-        template <typename U>
-        auto& operator +=(const Unique<U>& o) {
+        auto& operator +=(const Unique<T>& o) {
             value += o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator -(const Unique<U>& o) const {
+        auto operator -(const Unique<T>& o) const {
             return Unique<decltype(value - o.value)>(value - o.value);
         }
 
-        template <typename U>
-        auto& operator -=(const Unique<U>& o) {
+        auto& operator -=(const Unique<T>& o) {
             value -= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator *(const Unique<U>& o) const {
+        auto operator *(const Unique<T>& o) const {
             return Unique<decltype(value * o.value)>(value * o.value);
         }
 
-        template <typename U>
-        auto& operator *=(const Unique<U>& o) {
+        auto& operator *=(const Unique<T>& o) {
             value *= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator /(const Unique<U>& o) const {
+        auto operator /(const Unique<T>& o) const {
             return Unique<decltype(value / o.value)>(value / o.value);
         }
 
-        template <typename U>
-        auto& operator /=(const Unique<U>& o) {
+        auto& operator /=(const Unique<T>& o) {
             value /= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator %(const Unique<U>& o) const {
+        auto operator %(const Unique<T>& o) const {
             return Unique<decltype(value % o.value)>(value % o.value);
         }
 
-        template <typename U>
-        auto& operator %=(const Unique<U>& o) {
+        auto& operator %=(const Unique<T>& o) {
             value %= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator ^(const Unique<U>& o) const {
+        auto operator ^(const Unique<T>& o) const {
             return Unique<decltype(value ^ o.value)>(value ^ o.value);
         }
 
-        template <typename U>
-        auto& operator ^=(const Unique<U>& o) {
+        auto& operator ^=(const Unique<T>& o) {
             value ^= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator &(const Unique<U>& o) const {
+        auto operator &(const Unique<T>& o) const {
             return Unique<decltype(value & o.value)>(value & o.value);
         }
 
-        template <typename U>
-        auto& operator &=(const Unique<U>& o) {
+        auto& operator &=(const Unique<T>& o) {
             value &= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator |(const Unique<U>& o) const {
+        auto operator |(const Unique<T>& o) const {
             return Unique<decltype(value | o.value)>(value | o.value);
         }
 
-        template <typename U>
-        auto& operator |=(const Unique<U>& o) {
+        auto& operator |=(const Unique<T>& o) {
             value |= o.value;
             return *this;
         }
 
-        template <typename U>
         auto operator ~() const {
             return Unique<decltype(~value)>(~value);
         }
 
-        template <typename U>
-        auto operator <<(const Unique<U>& o) const {
+        auto operator <<(const Unique<T>& o) const {
             return Unique<decltype(value << o.value)>(value << o.value);
         }
 
-        template <typename U>
-        auto& operator <<=(const Unique<U>& o) {
+        auto& operator <<=(const Unique<T>& o) {
             value <<= o.value;
             return *this;
         }
 
-        template <typename U>
-        auto operator >>(const Unique<U>& o) const {
+        auto operator >>(const Unique<T>& o) const {
             return Unique<decltype(value >> o.value)>(value >> o.value);
         }
 
-        template <typename U>
-        auto& operator >>=(const Unique<U>& o) {
+        auto& operator >>=(const Unique<T>& o) {
             value >>= o.value;
             return *this;
         }
@@ -158,161 +137,142 @@ namespace mpt
         auto& operator --() { return --value, *this; }
         auto operator --(int) { return Unique<T>(value--); }
 
-        template<typename U>
-        bool operator ==(const Unique<U>& o) const { return value == o.value; }
+        bool operator ==(const Unique<T>& o) const {
+            return value == o.value;
+        }
 
-        template<typename U>
-        bool operator !=(const Unique<U>& o) const { return value != o.value; }
+        bool operator !=(const Unique<T>& o) const {
+            return value != o.value;
+        }
 
-        template<typename U>
-        bool operator <(const Unique<U>& o) const { return value < o.value; }
+        bool operator <(const Unique<T>& o) const {
+            return value < o.value;
+        }
 
-        template<typename U>
-        bool operator >(const Unique<U>& o) const { return value > o.value; }
+        bool operator >(const Unique<T>& o) const {
+            return value > o.value;
+        }
 
-        template<typename U>
-        bool operator <=(const Unique<U>& o) const { return value <= o.value; }
+        bool operator <=(const Unique<T>& o) const {
+            return value <= o.value;
+        }
 
-        template<typename U>
-        bool operator >=(const Unique<U>& o) const { return value >= o.value; }
+        bool operator >=(const Unique<T>& o) const {
 
-        template <typename U>
-        auto operator +(const universal_type<U>& o) const {
+            return value >= o.value;
+        }
+
+        auto operator +(const universal_type<T>& o) const {
             return Unique<decltype(value + o.val)>(value + o.val);
         }
 
-        template <typename U>
-        auto& operator +=(const universal_type<U>& o) {
+        auto& operator +=(const universal_type<T>& o) {
             value += o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator -(const universal_type<U>& o) const {
+        auto operator -(const universal_type<T>& o) const {
             return Unique<decltype(value - o.val)>(value - o.val);
         }
 
-        template <typename U>
-        auto& operator -=(const universal_type<U>& o) {
+        auto& operator -=(const universal_type<T>& o) {
             value -= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator *(const universal_type<U>& o) const {
+        auto operator *(const universal_type<T>& o) const {
             return Unique<decltype(value * o.val)>(value * o.val);
         }
 
-        template <typename U>
-        auto& operator *=(const universal_type<U>& o) {
+        auto& operator *=(const universal_type<T>& o) {
             value *= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator /(const universal_type<U>& o) const {
+        auto operator /(const universal_type<T>& o) const {
             return Unique<decltype(value / o.val)>(value / o.val);
         }
 
-        template <typename U>
-        auto& operator /=(const universal_type<U>& o) {
+        auto& operator /=(const universal_type<T>& o) {
             value /= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator %(const universal_type<U>& o) const {
+        auto operator %(const universal_type<T>& o) const {
             return Unique<decltype(value % o.val)>(value % o.val);
         }
 
-        template <typename U>
-        auto& operator %=(const universal_type<U>& o) {
+        auto& operator %=(const universal_type<T>& o) {
             value %= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator ^(const universal_type<U>& o) const {
+        auto operator ^(const universal_type<T>& o) const {
             return Unique<decltype(value ^ o.val)>(value ^ o.val);
         }
 
-        template <typename U>
-        auto& operator ^=(const universal_type<U>& o) {
+        auto& operator ^=(const universal_type<T>& o) {
             value ^= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator &(const universal_type<U>& o) const {
+        auto operator &(const universal_type<T>& o) const {
             return Unique<decltype(value & o.val)>(value & o.val);
         }
 
-        template <typename U>
-        auto& operator &=(const universal_type<U>& o) {
+        auto& operator &=(const universal_type<T>& o) {
             value &= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator |(const universal_type<U>& o) const {
+        auto operator |(const universal_type<T>& o) const {
             return Unique<decltype(value | o.val)>(value | o.val);
         }
 
-        template <typename U>
-        auto& operator |=(const universal_type<U>& o) {
+        auto& operator |=(const universal_type<T>& o) {
             value |= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator <<(const universal_type<U>& o) const {
+        auto operator <<(const universal_type<T>& o) const {
             return Unique<decltype(value << o.val)>(value << o.val);
         }
 
-        template <typename U>
-        auto& operator <<=(const universal_type<U>& o) {
+        auto& operator <<=(const universal_type<T>& o) {
             value <<= o.val;
             return *this;
         }
 
-        template <typename U>
-        auto operator >>(const universal_type<U>& o) const {
+        auto operator >>(const universal_type<T>& o) const {
             return Unique<decltype(value >> o.val)>(value >> o.val);
         }
 
-        template <typename U>
-        auto& operator >>=(const universal_type<U>& o) {
+        auto& operator >>=(const universal_type<T>& o) {
             value >>= o.val;
             return *this;
         }
 
-        template<typename U>
-        bool operator ==(const universal_type<U>& o) const {
+        bool operator ==(const universal_type<T>& o) const {
             return value == o.val;
         }
 
-        template<typename U>
-        bool operator !=(const universal_type<U>& o) const {
+        bool operator !=(const universal_type<T>& o) const {
             return value != o.val;
         }
 
-        template<typename U>
-        bool operator <(const universal_type<U>& o) const {
+        bool operator <(const universal_type<T>& o) const {
             return value < o.val;
         }
 
-        template<typename U>
-        bool operator >(const universal_type<U>& o) const {
+        bool operator >(const universal_type<T>& o) const {
             return value > o.val;
         }
 
-        template<typename U>
-        bool operator <=(const universal_type<U>& o) const {
+        bool operator <=(const universal_type<T>& o) const {
             return value <= o.val;
         }
 
-        template<typename U>
-        bool operator >=(const universal_type<U>& o) const {
+        bool operator >=(const universal_type<T>& o) const {
             return value >= o.val;
         }
 
@@ -323,6 +283,13 @@ namespace mpt
     template <typename T>
     struct universal_type
     {
+        universal_type() = default;
+
+        universal_type(const T& v) : val{v} {}
+
+        template <typename U>
+        universal_type(const universal_type<U>& o) : val{o.val} {}
+        
         operator T() const { return val; }
         operator T&() { return val; }
 
@@ -348,7 +315,7 @@ namespace mpt
 
     template <typename T>
     universal_type<T> W(const T& wrap) {
-        return universal_type<T>{wrap};
+        return universal_type<T>(wrap);
     }
 
     template <typename Tag, typename T>
