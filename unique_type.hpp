@@ -8,6 +8,9 @@
 
 namespace mpt
 {
+    template <typename T>
+    struct universal_type { T val; };
+
     template <typename Tag, typename T>
     class unique_type
     {
@@ -25,6 +28,15 @@ namespace mpt
 
         explicit unique_type(const T& val) : value(val) {}
         explicit unique_type(T&& val) : value(val) {}
+
+        auto& operator =(const universal_type<T>& o) {
+            value = o.val;
+            return *this;
+        }
+        auto& operator =(universal_type<T>&& o) {
+            value = o.val;
+            return *this;
+        }
 
         explicit operator T() const { return value; }
         explicit operator T&() { return value; }
@@ -185,6 +197,16 @@ namespace mpt
     std::istream& operator>>(std::istream& is, unique_type<Tag, T>& obj) {
         is >> T(obj);
         return is;
+    }
+
+    template <typename T>
+    universal_type<T> W(const T& wrap) {
+        return universal_type<T>{wrap};
+    }
+
+    template <typename T>
+    universal_type<T> W(T&& wrap) {
+        return universal_type<T>{wrap};
     }
 
     template <typename Tag, typename T>
