@@ -17,7 +17,7 @@ namespace mpt
         static_assert(std::is_arithmetic<T>::value, "unique_type not given arithmetic type");
 
     private:
-        template <typename UTag, typename U>
+        template <typename AnyTag, typename AnyType>
         friend class unique_type;
 
         template <typename U>
