@@ -164,7 +164,6 @@ namespace mpt
         }
 
         bool operator >=(const Unique<T>& o) const {
-
             return value >= o.value;
         }
 
@@ -381,7 +380,6 @@ namespace mpt
 
         template <typename Tag>
         bool operator >=(const unique_type<Tag, T>& o) const {
-
             return val >= o.value;
         }
 
